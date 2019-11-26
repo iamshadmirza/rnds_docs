@@ -1,0 +1,3 @@
+[submodule "react-native-design-system"]
+	path = react-native-design-system
+	url = https://github.com/iamshadmirza/react-native-design-system.git
