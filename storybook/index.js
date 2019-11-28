@@ -1,8 +1,18 @@
+import React from 'react';
 import { AppRegistry } from 'react-native';
-import { getStorybookUI, configure } from '@storybook/react-native';
+import { getStorybookUI, configure, addDecorator } from '@storybook/react-native';
 import { loadStories } from './storyLoader';
 
 import './rn-addons';
+import { ThemeProvider, theme } from '../react-native-design-system/index';
+
+addDecorator((Story) => {
+  return (
+    <ThemeProvider value={theme}>
+      <Story />
+    </ThemeProvider>
+  );
+});
 
 // import stories
 configure(() => {
