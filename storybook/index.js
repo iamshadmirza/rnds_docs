@@ -1,12 +1,11 @@
 import React from 'react';
 import { AppRegistry } from 'react-native';
-import { getStorybookUI, configure, addDecorator } from '@storybook/react';
+import { getStorybookUI, configure, addDecorator } from '@storybook/react-native';
 import { loadStories } from './storyLoader';
 
 import './rn-addons';
 import { ThemeProvider, theme } from '../react-native-design-system/index';
 
-addDecorator(withInfo);
 
 addDecorator((Story) => {
   return (
