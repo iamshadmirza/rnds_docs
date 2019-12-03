@@ -2,13 +2,15 @@
 const path = require("path");
 
 module.exports = ({ config }) => {
-  config.resolve = {
-    modules: ["node_modules"],
-    extensions: [".web.js", ".js", ".json", ".web.jsx", ".jsx"],
-    alias: {
-      "react-native$": require.resolve("react-native-web")
-    }
-  };
+
+  config.resolve.extensions.push(".ts", ".tsx");
+
+  config.resolve.alias["react-native$"] = require.resolve("react-native-web");
+
+  config.resolve.alias["@expo/vector-icons"] = path.resolve(
+    __dirname,
+    "../node_modules/react-native-vector-icons"
+  );
 
   config.module.rules.unshift({
     test: /\.(png|jpe?g|gif)$/,
