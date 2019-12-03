@@ -2,7 +2,7 @@ import { configure, addDecorator } from '@storybook/react';
 import { ThemeProvider, theme } from '../react-native-design-system/index';
 
 function loadStories() {
-  const req = require.context("../react-native-design-system", true, /\.stories\.js?$/);
+  const req = require.context("../react-native-design-system/src", true, /\.stories\.js?$/);
   req.keys().forEach(story => req(story));
 }
 

@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = ({ config }) => {
 
-  config.resolve.extensions.push(".ts", ".tsx");
+  config.resolve.extensions.push(".web.js", ".js", ".json", ".web.jsx", ".jsx");
 
   config.resolve.alias["react-native$"] = require.resolve("react-native-web");
 
