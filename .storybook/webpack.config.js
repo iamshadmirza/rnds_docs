@@ -1,10 +1,45 @@
-// https://github.com/storybooks/storybook/issues/1946
 const path = require("path");
+const threadLoader = require("thread-loader");
 
-module.exports = ({ config }) => {
+const jsWorkerCommonOptions = {
+  workers: 2,
+  workerParallelJobs: 50,
+  poolParallelJobs: 50
+};
 
-  config.resolve.extensions.push(".web.js", ".js", ".json", ".web.jsx", ".jsx");
+const babelWorkerOptions = {
+  ...jsWorkerCommonOptions,
+  name: "babel-pool"
+};
 
+module.exports = ({ config, mode }) => {
+  if (mode !== "PRODUCTION") {
+    threadLoader.warmup(babelWorkerOptions, ["babel-loader"]);
+  }
+
+  config.module.rules.push({
+    test: /\.jsx?$/,
+    include: [
+      path.resolve(__dirname, "../node_modules/react-native"),
+      path.resolve(__dirname, "../node_modules/react-native-elements"),
+      path.resolve(__dirname, "../node_modules/react-native-vector-icons"),
+      path.resolve(__dirname, "../node_modules/@expo/vector-icons"),
+    ],
+    use: [
+      { loader: "cache-loader" },
+      { loader: "thread-loader", options: babelWorkerOptions },
+      {
+        loader: "babel-loader?cacheDirectory?true",
+        options: {
+          presets: [
+            "module:metro-react-native-babel-preset",
+            "@babel/preset-flow"
+          ]
+        }
+      }
+    ]
+  });
+  // convert react-native to react-native-web for storybook
   config.resolve.alias["react-native$"] = require.resolve("react-native-web");
 
   config.resolve.alias["@expo/vector-icons"] = path.resolve(
@@ -12,53 +47,6 @@ module.exports = ({ config }) => {
     "../node_modules/react-native-vector-icons"
   );
 
-  config.module.rules.unshift({
-    test: /\.(png|jpe?g|gif)$/,
-    use: [
-      {
-        loader: "react-native-web-image-loader",
-        options: {
-          name: "[name].[ext]",
-          scalings: { "": 1, "@2x": 2, "@3x": 3 }
-        }
-      }
-    ]
-  });
-
-  config.module.rules.unshift({
-    test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-    loader: require.resolve("url-loader"),
-    options: {
-      limit: 10000,
-      name: "static/media/[name].[hash:8].[ext]"
-    }
-  });
-
-  config.module.rules.unshift({
-    test: /\.(woff|woff2|eot|ttf|svg)$/,
-    use: [
-      {
-        loader: require.resolve("file-loader"),
-        options: {
-          limit: 10000,
-          name: "static/media/[name].[hash:8].[ext]"
-        }
-      }
-    ]
-  });
-
-  config.module.rules.push({
-    test: /\.js$/,
-    use: [
-      {
-        loader: require.resolve("babel-loader"),
-        options: {
-          plugins: ["@babel/plugin-proposal-class-properties"],
-          presets: ["@babel/preset-env", "@babel/preset-react"]
-        }
-      }
-    ]
-  });
-
+  config.resolve.extensions.push(".js", ".jsx", ".mdx");
   return config;
 };
