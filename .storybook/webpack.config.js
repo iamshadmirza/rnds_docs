@@ -58,13 +58,15 @@ module.exports = ({ config, mode }) => {
       },
     ],
   });
+
+  config.module.rules.push({
+    test: /\.(stories|story)\.[tj]sx?$/,
+    loader: require.resolve('@storybook/source-loader'),
+    exclude: [/node_modules/],
+    enforce: 'pre',
+  });
   // convert react-native to react-native-web for storybook
   config.resolve.alias["react-native$"] = require.resolve("react-native-web");
-
-  config.resolve.alias["@expo/vector-icons"] = path.resolve(
-    __dirname,
-    "../node_modules/react-native-vector-icons"
-  );
 
   config.resolve.extensions.push(".js", ".jsx", ".mdx");
   return config;
