@@ -24,7 +24,6 @@ module.exports = ({ config, mode }) => {
       path.resolve(__dirname, "../node_modules/react-native"),
       path.resolve(__dirname, "../node_modules/react-native-elements"),
       path.resolve(__dirname, "../node_modules/react-native-vector-icons"),
-      path.resolve(__dirname, "../node_modules/@expo/vector-icons"),
     ],
     use: [
       { loader: "cache-loader" },
