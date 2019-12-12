@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to RNDSDemo 👋</h1>
+<h1 align="center">Welcome to rnds_docs 👋</h1>
 <p>
   <a href="https://twitter.com/iamshadmirza">
     <img alt="Twitter: iamshadmirza" src="https://img.shields.io/twitter/follow/iamshadmirza.svg?style=social" target="_blank" />

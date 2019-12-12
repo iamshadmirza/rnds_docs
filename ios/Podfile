@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'RNDSDemo' do
-  # Pods for RNDSDemo
+target 'rnds_docs' do
+  # Pods for rnds_docs
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -34,7 +34,7 @@ target 'RNDSDemo' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'RNDSDemoTests' do
+  target 'rnds_docsTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -42,10 +42,10 @@ target 'RNDSDemo' do
   use_native_modules!
 end
 
-target 'RNDSDemo-tvOS' do
-  # Pods for RNDSDemo-tvOS
+target 'rnds_docs-tvOS' do
+  # Pods for rnds_docs-tvOS
 
-  target 'RNDSDemo-tvOSTests' do
+  target 'rnds_docs-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
