@@ -6,8 +6,12 @@ import { ThemeProvider, theme } from '../react-native-design-system/index';
 
 function loadStories() {
   const req = require.context("../react-native-design-system/src", true, /\.stories\.(js|mdx)$/);
-  req.keys().forEach(story => req(story));
+  const stories = [];
+  req.keys().forEach(story => stories.push(req(story)));
+  return stories;
 }
+
+console.log('loadStories', loadStories());
 
 addDecorator(withKnobs)
 

@@ -22,7 +22,6 @@ module.exports = ({ config, mode }) => {
     test: /\.jsx?$/,
     include: [
       path.resolve(__dirname, "../node_modules/react-native"),
-      path.resolve(__dirname, "../node_modules/react-native-elements"),
       path.resolve(__dirname, "../node_modules/react-native-vector-icons"),
     ],
     use: [
