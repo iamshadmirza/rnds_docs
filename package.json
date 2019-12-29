@@ -8,8 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "build:storybook": "build-storybook -c .storybook -o public"
+    "storybook": "start-storybook -p 9001 -c .storybook -s .storybook/assets",
+    "build:storybook": "build-storybook -c .storybook -s .storybook/assets -o public"
   },
   "dependencies": {
     "react": "16.9.0",
