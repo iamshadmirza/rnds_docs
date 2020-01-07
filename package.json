@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "storybook": "start-storybook -p 9001 -c .storybook -s .storybook/assets",
-    "build:storybook": "build-storybook -c .storybook -s .storybook/assets -o public"
+    "build:storybook": "build-storybook -c .storybook -s .storybook/assets -o docs"
   },
   "dependencies": {
     "react": "16.9.0",
