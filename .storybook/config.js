@@ -22,8 +22,6 @@ function loadStories() {
   return stories;
 }
 
-console.log('loadStories', loadStories());
-
 addDecorator(withKnobs)
 
 addDecorator((Story) => {
