@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, addParameters, addDecorator } from "@storybook/react";
 import storyTheme from './theme';
 import { withKnobs } from "@storybook/addon-knobs";
-import { ThemeProvider, theme } from '../react-native-design-system/index';
+import { ThemeProvider, theme } from '../react-native-design-system/src';
 
 addParameters({
   options: {
